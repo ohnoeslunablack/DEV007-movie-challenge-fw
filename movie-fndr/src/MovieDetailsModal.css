@@ -1,7 +1,6 @@
-/* MovieDetailsModal.css */
-
 /* Estilos para la modal */
 .modal-content {
+    font-family: 'Poppins', sans-serif;
     background-color: black;
     border: 5px dotted #C47B25;
     border-radius: 5px;
@@ -28,7 +27,7 @@
     z-index: 2;
 }
 
-/* Resto de los estilos permanecen sin cambios */
+
 .modal-image-container {
     flex: 1;
     margin-right: 20px;

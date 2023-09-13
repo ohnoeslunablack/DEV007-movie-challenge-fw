@@ -1,0 +1,49 @@
+.genre-filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    background-color: rgba(228, 226, 226, 0.107);
+    border: 2px solid #221f1b;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .genre-label {
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+  }
+  
+  .genre-selector {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+
+  .genre-selector:hover {
+    background-color: #C47B25;
+    color: #fff; 
+  }
+  
+  @media (max-width: 320px) {
+    .genre-label {
+      font-size: 16px;
+      height: 100%;
+    }
+  
+    .genre-selector {
+      font-size: 14px;
+    }
+  }
+  

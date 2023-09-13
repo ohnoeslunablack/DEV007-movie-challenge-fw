@@ -1,9 +1,10 @@
 /* Estilos generales */
 body {
   background-color: black;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #f0f0f0;
 }
+
 
 .container {
   margin: auto;
@@ -11,7 +12,7 @@ body {
   padding: 20px;
 }
 
-/* Estilo para la película seleccionada */
+
 .row .col-md-6 img {
   max-width: 100%;
   height: auto;
@@ -24,4 +25,5 @@ body {
     height: auto;
   }
 }
+
 
