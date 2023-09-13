@@ -1,22 +1,22 @@
-import React from "react";
-import "./MovieGrid.css"; // Importa tus estilos CSS aquí si es necesario
+import React from 'react';
+import './MovieGrid.css';
 
-const MovieGrid = ({ movies, selectMovie }) => {
+const MovieGrid = ({ movies, onMovieSelect, IMAGE_PATH }) => {
   return (
-    <div className="movie-grid">
+    <div className="container mt-3 movie-grid">
       {movies.map((movie) => (
         <div
           key={movie.id}
-          className="movie-item"
-          onClick={() => selectMovie(movie)}
+          className="col-md-4 mb-3 movie-item"
+          onClick={() => onMovieSelect(movie)}
         >
           <img
-            src={movie.poster_path ? `${"https://image.tmdb.org/t/p/original" + movie.poster_path}` : "imagen_no_disponible.jpg"}
+            src={`${IMAGE_PATH}${movie.poster_path}`}
             alt=""
-            height={500}
+            height={280}
             width="100%"
           />
-          <h4 className="text-center">{movie.title || "Sin título"}</h4>
+          <h4 className="text-center text-white">{movie.title}</h4>
         </div>
       ))}
     </div>
@@ -24,6 +24,14 @@ const MovieGrid = ({ movies, selectMovie }) => {
 };
 
 export default MovieGrid;
+
+
+
+
+
+
+
+
 
 
 

@@ -1,7 +1,7 @@
-/* App.css */
+/* Estilos generales */
 body {
-  background-color: black; /* Fondo negro */
-  font-family: Arial, sans-serif; /* Fuente Arial */
+  background-color: black;
+  font-family: Arial, sans-serif;
   color: #f0f0f0;
 }
 
@@ -11,33 +11,17 @@ body {
   padding: 20px;
 }
 
-input[type="text"] {
-  border: 2px solid #f0f0f0; /* Borde degradado */
-  border-image: linear-gradient(to right, #f0f0f0, #C47B25); /* Degradado amarillo */
-  border-image-slice: 1;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-button.btn-primary {
-  background-color: #C47B25; /* Fondo amarillo */
-  color: black; /* Texto negro */
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-button.btn-primary:hover {
-  background-color: #f0f0f0; /* Cambio de color al pasar el cursor */
-  color: black; /* Texto negro */
-}
-
-.text-white {
-  color: white; /* Texto blanco */
-}
-
 /* Estilo para la película seleccionada */
 .row .col-md-6 img {
   max-width: 100%;
   height: auto;
 }
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 767px) {
+  .row .col-md-6 img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+

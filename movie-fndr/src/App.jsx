@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./App.css";
-import MovieGrid from "./MovieGrid"; // Importa el componente MovieGrid
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import './App.css';
+import MovieGrid from './MovieGrid';
+import SearchBar from './SearchBar';
+import MovieDetailsModal from './MovieDetailsModal';
 
-export const App = () => {
+function App() {
   const API_URL = "https://api.themoviedb.org/3";
   const API_KEY = "d9578838d54d95060e756482a10532f4";
   const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
 
   const [movies, setMovies] = useState([]);
   const [searchKey, setSearchKey] = useState("");
-  const [movie, setMovie] = useState({ title: "Loading Movies" });
   const [movieDetails, setMovieDetails] = useState(null);
 
   const fetchMovies = async (searchKey) => {
@@ -25,17 +26,17 @@ export const App = () => {
     });
 
     setMovies(results);
-    setMovie(results[0]);
-
-    if (results.length) {
-      await fetchMovie(results[0].id);
-    }
+    setMovieDetails(null);
 
     // Limpiar el input después de la búsqueda
     setSearchKey("");
   };
 
-  const fetchMovie = async (id) => {
+  const selectMovie = async (movie) => {
+    fetchMovieDetails(movie.id);
+  };
+
+  const fetchMovieDetails = async (id) => {
     const { data } = await axios.get(`${API_URL}/movie/${id}`, {
       params: {
         api_key: API_KEY,
@@ -43,13 +44,16 @@ export const App = () => {
       },
     });
 
-    setMovieDetails(data);
-  };
+    // Enrich movie data with additional information
+    data.director = data.credits.crew.find(
+      (crewMember) => crewMember.job === "Director"
+    )?.name;
+    data.writer = data.credits.crew.find(
+      (crewMember) => crewMember.job === "Screenplay"
+    )?.name;
+    data.cast = data.credits.cast;
 
-  const selectMovie = async (movie) => {
-    fetchMovie(movie.id);
-    setMovie(movie);
-    window.scrollTo(0, 0);
+    setMovieDetails(data);
   };
 
   const searchMovies = (e) => {
@@ -63,67 +67,40 @@ export const App = () => {
 
   return (
     <div>
-      <h2 className="text-center mt-5 mb-5">MOVIE FNDR</h2>
+      <h2 className="text-center mt-5 mb-5" style={{ fontSize: '30px' }}>Movie FNDR</h2>
 
-      <form className="container mb-4" onSubmit={searchMovies}>
-        <input
-          type="text"
-          placeholder="Buscar"
-          value={searchKey}
-          onChange={(e) => setSearchKey(e.target.value)}
+      <SearchBar onSearch={fetchMovies} />
+
+      <main>
+        <div className="container">
+          <div className="row">
+            {movies.length > 0 ? (
+              <MovieGrid movies={movies} onMovieSelect={selectMovie} IMAGE_PATH={IMAGE_PATH} />
+            ) : (
+              <p>No se encontraron películas.</p>
+            )}
+          </div>
+        </div>
+      </main>
+
+      {movieDetails && (
+        <MovieDetailsModal
+          movie={movieDetails}
+          isOpen={true}
+          onRequestClose={() => setMovieDetails(null)}
+          IMAGE_PATH={IMAGE_PATH}
         />
-        <button className="btn btn-primary">Buscar</button>
-      </form>
-
-      <div>
-        <main>
-          {movieDetails ? (
-            <div className="container">
-              <div className="row">
-                <div className="col-md-6">
-                  <img
-                    src={`${IMAGE_PATH + movie.poster_path}`}
-                    alt=""
-                    height={100}
-                    width="50%"
-                  />
-                </div>
-                <div className="col-md-6">
-                  <h1 className="text-white">{movie.title}</h1>
-                  <p className="text-white">{movie.overview}</p>
-                  <p className="text-white">
-                    Género:{" "}
-                    {movieDetails.genres.map((genre) => genre.name).join(", ")}
-                  </p>
-                  <p className="text-white">
-                    Clasificación: {movieDetails.vote_average}
-                  </p>
-                  <p className="text-white">
-                    Duración: {movieDetails.runtime} minutos
-                  </p>
-                  <p className="text-white">
-                    Director:{" "}
-                    {movieDetails.credits.crew.find(
-                      (crewMember) => crewMember.job === "Director"
-                    )?.name}
-                  </p>
-                  <p className="text-white">
-                    Escritor:{" "}
-                    {movieDetails.credits.crew.find(
-                      (crewMember) => crewMember.job === "Screenplay"
-                    )?.name}
-                  </p>
-                  {/* Agrega aquí el gráfico de puntuación */}
-                </div>
-              </div>
-            </div>
-          ) : null}
-        </main>
-      </div>
-
-      <MovieGrid movies={movies} selectMovie={selectMovie} />
+      )}
     </div>
   );
-};
-export default App; 
+}
+
+export default App;
+
+
+
+
+
+
+
 

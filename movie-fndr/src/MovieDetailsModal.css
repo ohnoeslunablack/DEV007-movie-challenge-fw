@@ -1,0 +1,92 @@
+/* MovieDetailsModal.css */
+
+/* Estilos para la modal */
+.modal-content {
+    background-color: black;
+    border: 5px dotted #C47B25;
+    border-radius: 5px;
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    height: 80vh;
+    overflow-y: auto;
+    margin-top: 2.5%;
+}
+
+/* Estilos para el overlay */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+/* Resto de los estilos permanecen sin cambios */
+.modal-image-container {
+    flex: 1;
+    margin-right: 20px;
+    width: 200px;
+    height: auto;
+}
+
+.modal-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: scale-down;
+}
+
+.modal-info-container {
+    flex: 2;
+}
+
+
+
+.modal-info-container h2,
+.modal-info-container p {
+    color: #f0f0f0;
+}
+
+.modal-info-container button {
+    background-color: #C47B25;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.modal-info-container button:hover {
+    background-color: rgba(228, 226, 226, 0.107);
+    color: #f0f0f0;
+}
+
+/* Estilos para el contenido scrollable */
+.modal-scrollable-content {
+    max-height: 400px;
+    overflow-y: auto;
+    max-width: 100%;
+  }
+  
+  /* Media query para dispositivos pequeños */
+  @media (max-width: 320px) {
+    .modal-content {
+      height: auto;
+      
+    }
+  
+   
+    .modal-scrollable-content {
+      max-height: 100%; 
+      max-width: 100%;
+    }
+  }
+
+
+  
+  

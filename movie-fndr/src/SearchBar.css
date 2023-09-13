@@ -1,0 +1,59 @@
+/* CSS para la barra de búsqueda */
+.container.mb-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 400px;
+    background-color: rgba(228, 226, 226, 0.107);
+    border: 2px solid #221f1b;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  button.btn-primary {
+    font-family: 'Poppins', sans-serif;
+    background-color: #C47B25;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.btn-primary:hover {
+    background-color: #fff;
+    color: #C47B25;
+  }
+  
+  @media (max-width: 768px) {
+    /* Estilos para pantallas pequeñas */
+    .container.mb-4 {
+      flex-direction: column;
+      text-align: center;
+      padding: 15px;
+    }
+  
+    input[type="text"] {
+      margin-bottom: 10px;
+    }
+  
+    button.btn-primary {
+      margin-left: 0;
+    }
+  }
+  
+  
